@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useQuery } from "react-query";
+import "./App.css";
+import { getQuotes } from "./api";
+import { queryClient } from ".";
 
 function App() {
+  const { isLoading, data } = useQuery("/fetchQuotes", getQuotes, {
+    enabled: false,
+  });
+  console.log("data", data);
+  const fetchQuotesData = () => {
+    // 요청을 수동으로 다시 로드하는 함수
+    queryClient.fetchQuery("/fetchQuotes");
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={fetchQuotesData}>Load Data</button>
+      {isLoading ? <p>Loading...</p> : <p>{data?.slip.advice}</p>}
     </div>
   );
 }
