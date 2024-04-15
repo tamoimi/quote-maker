@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "stara";
+  font-weight: normal;
+  src: url("./styles/fonts/Stara-Medium.woff") format("truetype");
+}
+
+body {
+  font-family: "stara";
+}

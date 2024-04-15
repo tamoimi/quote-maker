@@ -20,6 +20,7 @@ function App() {
     // 요청을 수동으로 다시 로드하는 함수
     queryClient.fetchQuery("/fetchQuotes");
   };
+
   return (
     <div className="flex flex-col gap-5 p-4 text-center">
       <button
@@ -30,7 +31,7 @@ function App() {
         onClick={fetchQuotesData}
         // onClick={toggleModal}
       >
-        Check today's quote
+        Check random quote
       </button>
       {isLoading ? (
         <p>Loading...</p>
